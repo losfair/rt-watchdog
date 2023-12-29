@@ -1,4 +1,4 @@
-pub mod asm;
+mod asm;
 mod deadline;
 #[cfg(test)]
 mod tests;
@@ -63,7 +63,7 @@ impl DeadlineParams {
 pub enum Strategy {
   RealtimeOnly,
   FallbackOnly,
-  RealtimeThenFallback,
+  RealtimeOrFallback,
 }
 
 pub fn start_watchdog(strategy: Strategy, check_interval: Duration) -> &'static Context {

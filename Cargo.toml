@@ -1,7 +1,10 @@
 [package]
 name = "rt-watchdog"
 version = "0.1.0"
+description = "Real-time userspace watchdog for Rust."
 edition = "2021"
+license = "Apache-2.0"
+authors = ["Heyang Zhou <zhy20000919@hotmail.com>"]
 
 [dependencies]
 libc = "0.2"
