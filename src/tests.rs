@@ -51,11 +51,6 @@ fn test_watchdog_realtime_only_fail() {
       std::process::exit(1);
     });
     assert!(libc::WIFSIGNALED(status));
-
-    #[cfg(not(target_arch = "aarch64"))]
-    assert_eq!(libc::WTERMSIG(status), 4); // SIGILL
-
-    #[cfg(target_arch = "aarch64")]
     assert_eq!(libc::WTERMSIG(status), 5); // SIGTRAP
   }
 }

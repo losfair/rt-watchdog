@@ -75,6 +75,7 @@ rt_watchdog_thread_entry:
   jmp 1b
 
 3:
+  int 3
   ud2
 
 .align 4096, 0x90
