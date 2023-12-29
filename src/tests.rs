@@ -56,6 +56,20 @@ fn test_watchdog_realtime_only_fail() {
 }
 
 #[test]
+fn test_watchdog_realtime_only_fail_tight_bounds() {
+  unsafe {
+    let status = run_forked(|| {
+      let _ctx = start_watchdog(Strategy::RealtimeOnly, Duration::from_millis(100));
+
+      std::thread::sleep(Duration::from_millis(110));
+      std::process::exit(1);
+    });
+    assert!(libc::WIFSIGNALED(status));
+    assert_eq!(libc::WTERMSIG(status), 5); // SIGTRAP
+  }
+}
+
+#[test]
 fn test_watchdog_fallback_only_fail() {
   unsafe {
     let status = run_forked(|| {
