@@ -66,7 +66,11 @@ pub enum Strategy {
   RealtimeThenFallback,
 }
 
-pub unsafe fn start_watchdog(strategy: Strategy, check_interval: Duration) -> &'static Context {
+pub fn start_watchdog(strategy: Strategy, check_interval: Duration) -> &'static Context {
+  unsafe { do_start_watchdog(strategy, check_interval) }
+}
+
+unsafe fn do_start_watchdog(strategy: Strategy, check_interval: Duration) -> &'static Context {
   let page_size = libc::sysconf(libc::_SC_PAGESIZE);
   assert!(page_size >= std::mem::size_of::<Context>() as i64);
   let page_size = page_size as usize;
