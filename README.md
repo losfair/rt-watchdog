@@ -1,5 +1,7 @@
 # rt-watchdog
 
+[![crates.io](https://img.shields.io/crates/v/rt-watchdog.svg)](https://crates.io/crates/rt-watchdog)
+
 Real-time userspace watchdog for Rust. Currently supported platforms are x86-64
 Linux and AArch64 Linux.
 
